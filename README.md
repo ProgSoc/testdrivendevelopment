@@ -21,21 +21,12 @@ To begin with as a demo, we have two simple User and Groups API routing setup.
 - We will develop a new feature, looking up and returning all users in a given group!
 - This will be done with the test driven development method
 
-## Using the demo
+## Using the demo (NOTE: use python or python3 as needed, depends on your install)
 1. cd to the project directory testdrivendevelopment
-2. run python3 manage.py runserver
-3. open the indicated link for the base URL
-4. Login with the top right corner, admin w/ tdd123
-5. Now the application will accept you!!
-
-## Extending the demo
-Now that we're familiar with the demo, let's extend it to include a new feature!!
-We will add the capability to show a view with all users in a group, 
-e.g.
-    Group1
-        user1
-        user2
-    Group2
-        user4
-    Group3
-        user3
+2. run python3 manage.py createsuperuser,
+3. Now enter admin as the username and the password as tdd123 (hit enter over the
+email and type y to override the password feature)
+4. run python3 manage.py runserver 
+5. open the indicated link for the base URL (http://localhost:8000 by default) 
+6. Login with the top right corner, admin w/ tdd123. Now the application will accept you!!
+7. Browse our two endpoints!!
