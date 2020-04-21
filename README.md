@@ -30,3 +30,8 @@ email and type y to override the password feature)
 5. open the indicated link for the base URL (http://localhost:8000 by default) 
 6. Login with the top right corner, admin w/ tdd123. Now the application will accept you!!
 7. Browse our two endpoints!!
+
+## Running a test
+1. cd to the project directory, this will contain the script `mange.py`
+2. run python3 manage.py test
+3. Check the outputs!! This would've created the setup for the tests, a new empty database, run the tests and torn the whole thing down for you!
