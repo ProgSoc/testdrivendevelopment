@@ -157,9 +157,11 @@ class WhichGroups(APITestCase):
 
 		self.manualTestName = "other group"
 
-		Group.objects.create(
+		self.obj_Group = Group.objects.create(
 			name = self.manualTestName
 		)
+
+		self.obj_Group.user_set.add(self.user)
 
 		# we won't worry about authentication (it's automatic), skip it!
 		self.client.force_authenticate(
@@ -167,4 +169,30 @@ class WhichGroups(APITestCase):
 		)
 
 	def testGETWhichGroups(self):
-		pass
+		# self has a reference to the API Client object instance, allows us to POST
+		# create and send the POST
+		response = self.client.get(self.url)
+
+		# assert we can access the /whichgroups/ endpoint
+		self.assertEquals(
+			response.status_code,
+			200
+		)
+
+		response = self.client.get(self.url + "?=" + self.group)
+		# our group values are in a nested OrderedDict containing a list and then another OrderedDict
+		groups = response.data['results'][0]['groups']
+		
+		# first check the data actually returned some groups!!
+		self.assertNotEquals(
+			len(groups),
+			0
+		)
+		# now assert the data returns a list with all correct groups
+		for group in groups:
+			self.assertEquals(
+				group,
+				# our returned data is the pk for the group, not its name
+				self.obj_Group.pk
+			)
+		
